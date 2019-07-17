@@ -8,10 +8,17 @@ phases:
       - pip install --upgrade pip
       - pip install pipenv --user
       - pip install awscli aws-sam-cli
-      - sam package --template-file "$(CODEBUILD_SRC_DIR)"/template.yaml --s3-bucket idexceldemo-sam --output-template-file "$(CODEBUILD_SRC_DIR)"/packaged.yaml
+  #    - mkdir build-output
+  #    - cp -R sam-app/ build-output
+      - sam package --template-file template.yaml --s3-bucket idexceldemo-sam --output-template-file packaged.yaml
+ # post_build:
+ #   commands:
+ ##     - mv build-output/**/* ./
+ #     - mv build-output/* ./
+ #     - rm -R build-output *.yml README* .git*
+
 artifacts:
   type: zip
   files:
-    - template.yaml
-    - packaged.yaml
+    - '**/*'
   discard-paths: yes
