@@ -1,0 +1,13 @@
+version: 0.2
+phases:
+  build:
+    commands:
+      - pip install — upgrade pip
+      - pip install pipenv — user
+      - pip install awscli aws-sam-cli
+      - sam package --template-file template.yaml --s3-bucket idexceldemo-sam --output-template-file packaged.yaml
+artifacts:
+  type: zip
+  files:
+    - template.yaml
+    - packaged.yaml
