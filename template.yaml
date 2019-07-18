@@ -33,18 +33,18 @@ Resources:
             Path: /players
             Method: get
 
-  POSTFunction:
-    Type: AWS::Serverless::Function
-    Properties:
-      CodeUri: hello-world/
-      Handler: post.handler
-      Runtime: nodejs10.x
-      Events:
-        HelloWorld:
-          Type: Api
-          Properties:
-            Path: /postreq
-            Method: post
+#  POSTFunction:
+#    Type: AWS::Serverless::Function
+#    Properties:
+#      CodeUri: hello-world/
+#      Handler: post.handler
+#      Runtime: nodejs10.x
+#      Events:
+#        HelloWorld:
+#          Type: Api
+#          Properties:
+#            Path: /postreq
+#            Method: post
   GetS3Function:
     Type: AWS::Serverless::Function
     Properties:
