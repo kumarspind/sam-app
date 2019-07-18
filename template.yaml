@@ -51,6 +51,8 @@ Resources:
       CodeUri: hello-world/
       Handler: getS3.handler
       Runtime: nodejs10.x
+      Policies: 
+        - AmazonS3FullAccess
       Events:
         HelloWorld:
           Type: Api
