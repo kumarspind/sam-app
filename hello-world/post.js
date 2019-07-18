@@ -1,4 +1,3 @@
-
 let response;
 
 exports.handler = async (event, context) => {
