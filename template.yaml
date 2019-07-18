@@ -45,4 +45,18 @@ Resources:
           Properties:
             Path: /postreq
             Method: post
+  GetS3Function:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: hello-world/
+      Handler: getS3.handler
+      Runtime: nodejs10.x
+      Events:
+        HelloWorld:
+          Type: Api
+          Properties:
+            Path: /gets3
+            Method: post
+
+
 
