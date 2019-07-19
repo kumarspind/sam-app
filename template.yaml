@@ -45,20 +45,71 @@ Resources:
 #          Properties:
 #            Path: /postreq
 #            Method: post
-  GetS3Function:
+#  GetS3Function:
+#    Type: AWS::Serverless::Function
+#    Properties:
+#      CodeUri: hello-world/
+#      Handler: getS3.handler
+#      Runtime: nodejs10.x
+#      Policies: 
+#        - AmazonS3FullAccess
+#      Events:
+#        HelloWorld:
+#          Type: Api
+#          Properties:
+#            Path: /gets3
+#            Method: post
+
+  returnS3Buckets:
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: hello-world/
-      Handler: getS3.handler
-      Runtime: nodejs10.x
-      Policies: 
-        - AmazonS3FullAccess
+      Handler: bucketlist.handler
+      Runtime: nodejs8.10
+      CodeUri: ./
+      AutoPublishAlias: live
+      Policies:
+        - Version: "2012-10-17"
+          Statement:
+          - Effect: "Allow"
+            Action:
+              - "s3:ListAllMyBuckets"
+            Resource: '*'
+      DeploymentPreference:
+          Type: Linear10PercentEvery1Minute
+          Hooks:
+            PreTraffic: !Ref preTrafficHook
       Events:
-        HelloWorld:
+        Api:
           Type: Api
           Properties:
-            Path: /gets3
-            Method: post
+            Path: /test
+            Method: get
 
 
 
+  preTrafficHook:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: preTrafficHook.handler
+      Policies:
+        - Version: "2012-10-17"
+          Statement:
+          - Effect: "Allow"
+            Action:
+              - "codedeploy:PutLifecycleEventHookExecutionStatus"
+            Resource:
+              !Sub 'arn:aws:codedeploy:${AWS::Region}:${AWS::AccountId}:deploymentgroup:${ServerlessDeploymentApplication}/*':deploymentgroup:${ServerlessDeploymentApplication}/*'
+        - Version: "2012-10-17"
+          Statement:
+          - Effect: "Allow"
+            Action:
+              - "lambda:InvokeFunction"
+            Resource: !Ref returnS3Buckets.Version
+      Runtime: nodejs8.10
+      FunctionName: 'CodeDeployHook_preTrafficHook'
+      DeploymentPreference:
+        Enabled: false
+      Timeout: 5
+      Environment:
+        Variables:
+          NewVersion: !Ref returnS3Buckets.Version
