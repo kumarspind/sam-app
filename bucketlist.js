@@ -12,7 +12,6 @@ exports.handler = (event, context, callback) => {
 			console.log(err, err.stack);
 			callback(null, {
 				statusCode: 500,
-				version: "v.1:,
 				body: "Failed!"
 			});
 		}
@@ -22,7 +21,6 @@ exports.handler = (event, context, callback) => {
 			console.log("Total buckets: " + allBuckets.length);
 			callback(null, {
 				statusCode: 200,
-				version: "v.1:,
 				body: allBuckets.length
 			});
 		}
