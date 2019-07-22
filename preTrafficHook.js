@@ -10,7 +10,7 @@ exports.handler = (event, context, callback) => {
 	
 	// Read the DeploymentId & LifecycleEventHookExecutionId from the event payload
     var deploymentId = event.DeploymentId;
-	console.log("DeploymentId : " + deploymentId);
+	console.log("DeploymentId : " + JSON.stringify(deploymentId));
 	var lifecycleEventHookExecutionId = event.LifecycleEventHookExecutionId;
 
 	var functionToTest = process.env.NewVersion;
