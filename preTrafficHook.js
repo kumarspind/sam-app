@@ -37,7 +37,7 @@ exports.handler = (event, context, callback) => {
 			//		"statusCode": 200,
 			//		"body": 51
 			// }
-			if(result.body == 11){	
+			if(result.body == 6){	
 				lambdaResult = "Succeeded";
 				console.log ("Validation testing succeeded!");
 			}
