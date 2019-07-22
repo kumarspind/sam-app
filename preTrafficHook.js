@@ -57,9 +57,9 @@ exports.handler = (event, context, callback) => {
 			codedeploy.putLifecycleEventHookExecutionStatus(params, function(err, data) {
 				if (err) {
 					// Validation failed.
-					console.log('CodeDeploy Status update failed. . RollBack');
+					console.log('CodeDeploy Status update failed');
 					console.log(err, err.stack);
-					callback("CodeDeploy Status update failed . . RollBack");
+					callback("CodeDeploy Status update failed");
 				} else {
 					// Validation succeeded.
 					console.log('Codedeploy status updated successfully');
