@@ -9,8 +9,8 @@ exports.handler = (event, context, callback) => {
 	console.log("Entering PreTraffic Hook!");
 	
 	// Read the DeploymentId & LifecycleEventHookExecutionId from the event payload
-    var deploymentId = event.DeploymentId;
-	//console.log("DeploymentId : " + JSON.stringify(deploymentId));
+        var deploymentId = event.DeploymentId;
+
 	var lifecycleEventHookExecutionId = event.LifecycleEventHookExecutionId;
 
 	var functionToTest = process.env.NewVersion;
