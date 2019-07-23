@@ -5,7 +5,7 @@ var AWS = require('aws-sdk');
 var s3 = new AWS.S3();
 
 exports.handler = (event, context, callback) => {
-	console.log("I am here! " + context.functionName  +  ":"  +  context.functionVersion);
+	console.log(context.functionName  +  ":"  +  context.functionVersion);
 
 	s3.listBuckets(function (err, data){
 		if(err){
