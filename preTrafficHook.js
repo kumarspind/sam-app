@@ -41,6 +41,7 @@ exports.handler = (event, context, callback) => {
 			if(result.body == 32){	
 				lambdaResult = "Succeeded";
 				console.log ("Validation testing succeeded!");
+				console.log ("--SUCCEEDED--IDEXCEL");
 			}
 			else{
 				lambdaResult = "Failed";
