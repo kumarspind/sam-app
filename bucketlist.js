@@ -6,7 +6,7 @@ var s3 = new AWS.S3();
 
 exports.handler = (event, context, callback) => {
 	console.log(context.functionName  +  ":"  +  context.functionVersion);
-
+	console.log("Demo Function Version : 1 ");
 	s3.listBuckets(function (err, data){
 		if(err){
 			console.log(err, err.stack);
@@ -17,7 +17,7 @@ exports.handler = (event, context, callback) => {
 		}
 		else{
 			var allBuckets = data.Buckets;
-			console.log("List Of all Buckets collected!");
+			
 			console.log("Total bucket count is: " + allBuckets.length);
 			callback(null, {
 				statusCode: 200,
