@@ -17,7 +17,7 @@ exports.handler = (event, context, callback) => {
 		}
 		else{
 			var allBuckets = data.Buckets;
-			console.log("XXXXXXXXXXXXX");
+			console.log("XXXWORLDXXX");
 			console.log("Total bucket count is: " + allBuckets.length);
 			callback(null, {
 				statusCode: 200,
