@@ -13,7 +13,10 @@ phases:
       - sam package --template-file $samTemplateName --s3-bucket $s3BucketName --output-template-file $packagedTemplateName
   post_build:
     commands:
-      - aws s3 cp $samTemplateName s3://samtemplateversions/$samTemplateName && aws s3 cp $packagedTemplateName s3://samtemplateversions/$packagedTemplateName
+      - echo uploading the templates to S3
+      - zip -r sam.tar.zip $samTemplateName $packagedTemplateName
+     # - aws s3 cp $samTemplateName s3://samtemplateversions/$samTemplateName && aws s3 cp $packagedTemplateName s3://samtemplateversions/$packagedTemplateName
+      - aws s3 cp sam.tar.zip s3://samtemplateversions/sam.tar.zip
       - echo Build completed on `date`
 artifacts:
   type: zip
