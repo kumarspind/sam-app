@@ -109,7 +109,7 @@ Resources:
       FunctionName: 'CodeDeployHook_preTrafficHook_sam'
       DeploymentPreference:
         Enabled: false
-      Timeout: 5
+      Timeout: 8
       Environment:
         Variables:
           NewVersion: !Ref returnS3Buckets.Version
